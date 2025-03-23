@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import './App.css';
+import Item from './Item';
 
 function App() {
   const [items, setItems] = useState([]);
 
-  function onAddItem(item) {
+  function onAddItem(text) {
+    let item = new Item(text);
     setItems([...items, item])
   };
 
@@ -19,7 +21,7 @@ function App() {
 function List(props) {
   return(
       <ul>
-          {props.items.map(item => <li>{item}</li>)}
+          {props.items.map(item => <li key={item.id}>{item.text}</li>)}
       </ul>
   )
 }
