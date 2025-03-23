@@ -1,27 +1,33 @@
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src="Octocat.png" className="App-logo" alt="logo" />
-        <p>
-          GitHub Codespaces <span className="heart">♥️</span> React
-        </p>
-        <p className="small">
-          Edit <code>src/App.jsx</code> and save to reload.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </p>
-      </header>
+
+  const [text, setText] = useState("");
+  const [items, setItems] = useState([]);
+
+  function handleChange(event) {
+    let t = event.target.value;
+    setText(t);
+  };
+
+  function addItem(event) {
+    event.preventDefault();
+    if(text) {
+      setItems([...items, text]);
+      setText("");
+    }    
+  };
+
+  return (<div className='container'>
+      <h1>Todo List</h1>
+      <form>
+        <input onChange={handleChange} type='text' value={text}></input>
+        <button onClick={addItem}>Adicionar</button>
+        </form>
+        <ul>
+          {items.map(item => <li>{item}</li>)}
+        </ul>
     </div>
   );
 }
