@@ -25,11 +25,17 @@ function App() {
         <input onChange={handleChange} type='text' value={text}></input>
         <button onClick={addItem}>Adicionar</button>
         </form>
-        <ul>
-          {items.map(item => <li>{item}</li>)}
-        </ul>
+        <List items={items}></List>
     </div>
   );
+}
+
+function List(props) {
+  return(
+      <ul>
+          {props.items.map(item => <li>{item}</li>)}
+      </ul>
+  )
 }
 
 export default App;
